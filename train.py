@@ -99,7 +99,6 @@ if __name__ == '__main__':
     Logger = init_logger(log_file=CFG.log_path)
 
     Logger.info('\n\n-------- exp_info -----------------')
-    # Logger.info(datetime.datetime.now().strftime('%Y年%m月%d日 %H:%M:%S'))
 
     train_images, train_masks, valid_images, valid_masks, valid_xyxys = get_train_valid_dataset(CFG)
 

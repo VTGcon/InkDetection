@@ -18,7 +18,7 @@ class CFG:
     target_size = 1
 
     # ============== model cfg =============
-    model_name = 'PAN'
+    model_name = 'Unet'
     backbone = 'efficientnet-b5'
     # backbone = 'se_resnext50_32x4d'
 
@@ -36,7 +36,7 @@ class CFG:
     # scheduler = 'CosineAnnealingLR'
     epochs = 15  # 30
 
-    # adamW warmupあり
+    # adamW warmup
     warmup_factor = 10
     # lr = 1e-4 / warmup_factor
     lr = 1e-4 / warmup_factor
@@ -46,7 +46,6 @@ class CFG:
 
     # objective_cv = 'binary'  # 'binary', 'multiclass', 'regression'
     metric_direction = 'maximize'  # maximize, 'minimize'
-    # metrics = 'dice_coef'
 
     # ============== fixed =============
     pretrained = True
@@ -79,8 +78,6 @@ class CFG:
 
     # ============== augmentation =============
     train_aug_list = [
-        # A.RandomResizedCrop(
-        #     size, size, scale=(0.85, 1.0)),
         A.Resize(size, size),
         A.HorizontalFlip(p=0.5),
         A.VerticalFlip(p=0.5),
@@ -94,8 +91,6 @@ class CFG:
         A.GridDistortion(num_steps=5, distort_limit=0.3, p=0.5),
         A.CoarseDropout(max_holes=1, max_width=int(size * 0.3), max_height=int(size * 0.3),
                         mask_fill_value=0, p=0.5),
-        # A.Cutout(max_h_size=int(size * 0.6),
-        #          max_w_size=int(size * 0.6), num_holes=1, p=1.0),
         A.Normalize(
             mean=[0] * in_chans,
             std=[1] * in_chans
